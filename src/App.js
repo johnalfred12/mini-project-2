@@ -1,10 +1,17 @@
-import { Container } from "react-bootstrap";
-import Navbar from "./components/Menu";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./layout/Layout";
+import Dashboard from "./pages/Dashboard";
+import Product from "./pages/Product";
 
 export default function App() {
     return (
-        <Container fluid className="bg-dark d-flex flex-wrap w-100">
-            <h1>Hello</h1>
-        </Container>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="product" element={<Product />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 }
