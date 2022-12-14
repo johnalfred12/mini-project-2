@@ -1,11 +1,12 @@
 import React from 'react';
+import './Content.css';
 
 class Page extends React.Component {
     render() {
         return (
-            <div>
-                <h1>{this.props.children}</h1>
-            </div>
+            <main>
+                {this.props.children}
+            </main>
         );
     }
 }
