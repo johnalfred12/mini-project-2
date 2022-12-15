@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import './Dashboard.css';
+import { data } from '../../data.js';
 
-export default function Dashboard() {
+export default function Dashboard({ props }) {
     return (
         <>
             <div class="head-title">
@@ -22,22 +23,22 @@ export default function Dashboard() {
                 <li>
                     <i class='bx bxs-calendar-check' ></i>
                     <span class="text">
-                        <h3>1020</h3>
-                        <p>New Order</p>
+                        <h3>Data</h3>
+                        <p>Title</p>
                     </span>
                 </li>
                 <li>
                     <i class='bx bxs-group' ></i>
                     <span class="text">
-                        <h3>2834</h3>
-                        <p>Visitors</p>
+                        <h3>Data</h3>
+                        <p>Title</p>
                     </span>
                 </li>
                 <li>
                     <i class='bx bxs-dollar-circle' ></i>
                     <span class="text">
-                        <h3>$2543</h3>
-                        <p>Total Sales</p>
+                        <h3>Data</h3>
+                        <p>Title</p>
                     </span>
                 </li>
             </ul>
@@ -62,9 +63,14 @@ export default function Dashboard() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-
-                            </tr>
+                            {data.map((data) => (
+                                <tr>
+                                    <td>{data.id}</td>
+                                    <td>{data.name}</td>
+                                    <td>P {data.price}.00</td>
+                                    <td>{data.quantity}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

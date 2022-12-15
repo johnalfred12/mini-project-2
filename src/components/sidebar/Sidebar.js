@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import './Sidebar.css';
 
 class Sidebar extends React.Component {
+    setActive() {
+        return "active";
+    }
+
     render() {
         return (
             <section id="sidebar">
@@ -10,13 +14,13 @@ class Sidebar extends React.Component {
                     <h2 className="text">Pegasus</h2>
                 </Link>
                 <ul className="side-menu top">
-                    <li className="active">
+                    <li className>
                         <Link to="/">
                             <i className='bx bxs-dashboard' ></i>
                             <span className="text">Dashboard</span>
                         </Link>
                     </li>
-                    <li>
+                    <li className>
                         <Link to="/product">
                             <i className='bx bxs-shopping-bag-alt' ></i>
                             <span className="text">Products</span>

@@ -1,7 +1,66 @@
 import { Link } from "react-router-dom";
 import './Product.css';
+import { data } from '../../data.js'
+import { useState } from "react";
+
+function Row(props) {
+    const { id, name, price, quantity, index, delRow } = props;
+    return (
+        <tr>
+            <td>{id}</td>
+            <td>{name}</td>
+            <td>{price}</td>
+            <td>{quantity}</td>
+            <td>
+                <button onClick={() => { delRow(index) }}>
+                    Delete
+                </button>
+                <button>Edit</button>
+            </td>
+        </tr>
+    );
+}
+
+function Table(props) {
+    const { data, delRow } = props;
+
+    return (
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                {data.map((row, index) =>
+                    <Row
+                        key={`key-${index}`}
+                        delRow={delRow}
+                        index={index}
+                        id={row.id}
+                        name={row.name}
+                        price={row.price}
+                        quantity={row.quantity}
+                    />)
+                }
+            </tbody>
+        </table>
+    );
+}
 
 export default function Product() {
+    const [rows, setRows] = useState(data)
+
+    function deleteRow(number) {
+        let copy = [...rows];
+        copy = copy.filter(
+            (item, index) => number !== index
+        )
+        setRows(copy);
+    }
+
     return (
         <>
             <div class="head-title">
@@ -33,26 +92,10 @@ export default function Product() {
                             </div>
                         </form>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <p>1</p>
-                                </td>
-                                <td>Ballpen</td>
-                                <td>10.00</td>
-                                <td>67</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <Table
+                        data={rows}
+                        delRow={deleteRow}
+                    />
                 </div>
             </div>
         </>
